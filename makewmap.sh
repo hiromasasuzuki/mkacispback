@@ -25,3 +25,4 @@ echo -e "  Created."
 fi
 done
 
+if [ `cat temp_weightmap_ccd?_energy${WEMIN}to${WEMAX}.dat |grep -cE "[1-9]"` -eq 0 ]; then echo "Zero counts in the selected region! Try a larger region!"; exit 1; fi

@@ -1,8 +1,7 @@
 #! /usr/bin/env python
 
-import os, sys, glob, math
+import sys
 from astropy.io import fits
-from array import array
 
 fits = fits.open(sys.argv[1])
 data = fits[0].data
