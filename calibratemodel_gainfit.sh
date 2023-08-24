@@ -57,15 +57,14 @@ echo "setp com view 0.12 0.3 0.9 0.9" >>$XCM
 echo "setp com wind 2" >>$XCM
 echo "setp com view 0.12 0.1 0.9 0.3" >>$XCM
 echo "setp com win 1" >>$XCM
-echo "setp com la y Counts s\\\\\\\\u-1\\\\\\\\d keV\\\\\\\\u-1" >>$XCM
+echo "setp com la y Counts s-1 keV-1" >>$XCM
 echo "setp com win 2" >>$XCM
 echo "setp com la y Data/Model" >>$XCM
 echo "setp com la pos y 3.3" >>$XCM
 
 echo "data 1:1 temp_spec.pi" >>$XCM
 echo "resp 1 temp.rmf" >>$XCM
-echo "ig **:**" >>$XCM
-echo "no **:9.0-11.5" >>$XCM
+echo "ig **:**-9.0, 11.5-**" >>$XCM
 if [ "${GAINFIT}" -eq 1 ]; then
 echo "gain fit" >>$XCM
 echo "1 0.0001" >>$XCM
@@ -83,8 +82,7 @@ echo "sho data" >>$XCM
 echo "sho param" >>$XCM
 echo "sho fit" >>$XCM
 echo "log none" >>$XCM
-echo "ig **:**" >>$XCM
-echo "no **:0.25-11.5" >>$XCM
+echo "ig **:**-0.25, 11.5-**" >>$XCM
 echo "setp rebin 5 50" >>$XCM
 echo "setp com r y1" >>$XCM
 echo "pl ld ra" >>$XCM
