@@ -26,11 +26,11 @@ hiromasa050701 (at) gmail.com
  
        $ mkacispback "acisf00000_evt2.fits.gz[sky=region(source.reg)]" outdir=pback-source name=pb_src
 
-Particle-induced background spectral model named "pb_src" for the sky region "source.reg" will be gerenated in the directory "pback-source".
+   Particle-induced background spectral model named "pb_src" for the sky region "source.reg" will be gerenated in the directory "pback-source".
 
-5. To load the model in XSPEC in the same same directory, 
+5. To load the model in XSPEC, 
 
-       XSPEC> lmod pb_src_pkg ./pback-source
+       XSPEC> lmod pb_src_pkg ./pback-source   # if you are at the parent directory of "pback-source" directory
 
 6. See more instruction with "mkacispback --h"
 
