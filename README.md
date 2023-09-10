@@ -21,15 +21,20 @@ hiromasa050701 (at) gmail.com
        export ACISPBACK_GXX=</path/to/g++**>   # g++ which supports c++11 (ex. "export ACISPBACK_GXX=/usr/local/bin/g++-9")
 
 2. Copy the executable file "mkacispback" to /usr/local/bin (or somewhere in the $PATH).
-3. Initialize HEAsoft and CIAO before running this command. The environment variable $CALDB must point at the CIAO CALDB. With CONDA CIAO, initialize HEAsoft and then activate CIAO, and finally set HEADAS to the HEAsoft directory,
-4. ```Example usage
+3. Initialize HEAsoft and CIAO before running this command. The environment variable $CALDB must point at the CIAO CALDB. With CONDA CIAO, initialize HEAsoft and then activate CIAO, and finally set HEADAS to the HEAsoft directory.
+4. Example: 
+
+```
 $ mkacispback "acisf00000_evt2.fits.gz[sky=region(source.reg)]" outdir=pback-source name=pb_src
 ```
+
 Particle-induced background spectral model named "pb_src" for the sky region "source.reg" will be gerenated in the directory "pback-source".
 5. To load the model in XSPEC, 
+
 ```
 XSPEC> lmod pb_src_pkg ./pback-source
 ```
+
 6. See instruction with "mkacispback --h"
 
 
