@@ -59,7 +59,7 @@ ARGS="${WEMIN} ${WEMAX} ${RMFDELTAE} ${GENWMAP} ${GENSPEC} ${GENRMF} ${CLOB} ${S
 ### print some setup parameters
 OBSID=`dmkeypar "${EV2FITS}" OBS_ID echo+`
 if [ `echo "$OBSID" |grep -cE "([0-9]+|Merged)"` -eq 0 -o `echo "$FORVF" |grep -cE "(faint|vfaint)"` -eq 0 ]; then
-	echo -e "\nInput parameter error !! Exiting... \n"
+	echo -e "\nInput parameter/file error !! Exiting... \n"
 	cat ${SCRIPT_DIR}/help
 	exit 1
 fi
@@ -76,33 +76,33 @@ if [ ! -e "${DIRNAME}" ]; then mkdir "${DIRNAME}"; fi
 ### create region-selected event file
 if [ $((GEMSPEC+GENWMAP+GENRMF)) -gt 0 ]; then
 	dmcopy "${EV2FITS}" ${DIRNAME}/temp_evt_regfil.evt option=all clobber="$CLOB" >/dev/null
-	if [ $? -gt 0 ]; then echo "Exiting due to an error..."; exit 1;fi
+	if [ $? -gt 0 ]; then echo "Exiting due to an error when making a filtered event file..."; exit 1;fi
 fi
 
 cd "$DIRNAME"
 
 ### make 32x32-binned weight map corresponding to input region, and deltaE curves for frame store lines
 bash ${SCRIPT_DIR}/makewmap.sh $ARGS
-if [ $? -gt 0 ]; then echo "Exiting due to an error..."; exit 1;fi
+if [ $? -gt 0 ]; then echo "Exiting due to an error when extracting a count (weight) map..."; exit 1;fi
 
 ### extract spectrum and rmf from input region
 if [ "$GENRMF" -eq 0 -a `echo "$@" |grep -c "rmffile="` -eq 1 ]; then cp ../$RMFFILE ./temp.rmf; fi
 bash ${SCRIPT_DIR}/makespecandrmf.sh $ARGS
-if [ $? -gt 0 ]; then echo "Exiting due to an error..."; exit 1;fi
+if [ $? -gt 0 ]; then echo "Exiting due to an error when extracting a spectrum and RMF..."; exit 1;fi
 
 ### take weighed-sum over template models
 if [ "$FORVF" = "faint" ]; then
 	bash ${SCRIPT_DIR}/makemodelfunction_faint.sh $ARGS
-	if [ $? -gt 0 ]; then echo "Exiting due to an error..."; exit 1;fi
+	if [ $? -gt 0 ]; then echo "Exiting due to an error when constructing a spectral model..."; exit 1;fi
 fi
 if [ "$FORVF" = "vfaint" ]; then
 	bash ${SCRIPT_DIR}/makemodelfunction_vfaint.sh $ARGS
-	if [ $? -gt 0 ]; then echo "Exiting due to an error..."; exit 1;fi
+	if [ $? -gt 0 ]; then echo "Exiting due to an error when constructing a spectral model..."; exit 1;fi
 fi
 
 ### calibrate the output spectral model
 bash ${SCRIPT_DIR}/calibratemodel_gainfit.sh $ARGS
-if [ $? -gt 0 ]; then echo "Exiting due to an error..."; exit 1;fi
+if [ $? -gt 0 ]; then echo "Exiting due to an error when calibrating the spectral model..."; exit 1;fi
 
 ### remove temporary files
 if [ "$RM_TEMP" -eq 1 ]; then echo -e "Removing temporary files...\n"; rm temp*; fi
