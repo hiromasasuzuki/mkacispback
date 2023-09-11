@@ -182,6 +182,7 @@ CCD1FAC=0.70
 if [ "$CCD" -eq 5 ];then AVERATE=1.55; ALPHA=0.35; fi
 #if [ "$CCD" -eq 6 ];then AVERATE=0.10; ALPHA=0.00; fi
 if [ "$CCD" -eq 7 ];then AVERATE=0.83; ALPHA=0.25; fi
+if [ $TOTCTS -lt 50 ];then RATE=$AVERATE
 
 ## weighed sum of components in template models
 for MOD_NO in `seq 32`; do
