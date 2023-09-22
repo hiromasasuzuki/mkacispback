@@ -37,7 +37,7 @@ genspec=[yes|no]: Generate energy spectrum or use already existing file. default
 specfile=[file name]: If provided, spectral file will not be newly created. If "genspec=no" and specfile is not provided, it tries to use "temp_spec.pi".
 egrid=[number (keV)]: Energy grid of output spectral model. default: 0.05.
 emin=[integer (eV)]: Lower energy bound for calculation of weight maps and spectral fit. default: 9000.
-emax=[integer (eV)]: Upper energy bound for calculation of weight maps and spectral fit. default: 115000.
+emax=[integer (eV)]: Upper energy bound for calculation of weight maps and spectral fit. default: 11500.
 gainfit=[yes|no]: Fit generated spectral model to the input data with/without free gain slope & offset. default: yes.
 normfit=[yes|no]: If adjustment of the normalization of output spectral model is performed or not. default: yes.
 plot=[yes|no]: Plot the spectral fit window or not. default: yes.
