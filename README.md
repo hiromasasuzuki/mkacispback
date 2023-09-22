@@ -37,7 +37,7 @@ Contributors: Taweewat Somboonpanyakul, Adam Mantz, Steven W. Allen (Stanford Un
 
 
 ### Notes:
-- By default, mkacispback newly creates an rmf file corresponding to the input source region and this takes some time. To prevent this, provide a prepared rmf file by "genrmf=no" and "rmffile=FILENAME".
+- By default, mkacispback newly creates an RMF file corresponding to the input source region and this may take some time. To prevent this, provide a prepared RMF file by "rmffile=FILENAME".
 - Output model name must not include numbers, upper case letters, and must not begin with the words already registerd as an XSPEC model (e.g., "name=src" leads to an error because "src" is recognized as the "srcut" model).
 - Depending on the observation date, mkacispback may predict lower background coninua in ~ 2-6 keV especially for the S1 and S3 CCDs. In such cases, you may have to add an additional power-law model. Please refer to the figures below which compare mkacispback output models to ACIS-stowed observations for each CCD. To get date from OBSID, refer to the paper below.
 	- VFAINT mode 
