@@ -1,14 +1,15 @@
 mkacispback
 =======================  
 A software to generate spectral models for Chandra ACIS particle-induced background.  
-Version: 2021-07-15  
+Version: 2023-09-23 
 Author: Hiromasa Suzuki (The University of Tokyo)  
-hiromasa050701 (at) gmail.com  
+   hiromasa050701 (at) gmail.com  
+Contributors: Taweewat Somboonpanyakul, Adam Mantz, Steven W. Allen (Stanford University)
 
 
 ### Requirements:
 - c++11 compiler (ver. 4.2.1, 4.8.5 tested)
-- python (ver. 3.0 or later reguired; 3.5.4, 3.6.8, 3.8.5, 3.10.8 tested) with "astropy" library
+- python (ver. 3.0 or later required; 3.5.4, 3.6.8, 3.8.5, 3.10.8 tested) with "astropy" library
 - CIAO (ver. 4.10, 4.11, 4.12, 4.14, 4.15 tested)
 - HEAsoft (ver. 6.20, 6.26, 6.27, 6.29, 6.30 tested)
 
@@ -22,7 +23,7 @@ hiromasa050701 (at) gmail.com
 
 2. Copy the executable file "mkacispback" to /usr/local/bin (or somewhere in the $PATH).
 3. Initialize HEAsoft and CIAO before running this command. The environment variable $CALDB must point at the CIAO CALDB. With CONDA CIAO, initialize HEAsoft and then activate CIAO, and finally set HEADAS to the HEAsoft directory.
-4. Run mkacispback by 
+4. Run mkacispback by, e.g., 
  
        $ mkacispback "acisf00000_evt2.fits.gz[sky=region(source.reg)]" outdir=pback-source name=pb_src
 
@@ -63,7 +64,6 @@ hiromasa050701 (at) gmail.com
 
 
 ### Known issues:
-- "initpackage" might fail on MacOS with Apple M1 chips
 
 
 ### Reference:

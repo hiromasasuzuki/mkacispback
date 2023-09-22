@@ -23,7 +23,7 @@ extern "C" {
         const char* init
     ){
 		std::cout << std::setprecision(10);
-		std::ifstream ifs("TEMPORAL1");
+		std::ifstream ifs("TEMP1");
 		std::string str;
 		if (ifs.fail()){
 			std::cerr << "error opening the flux dat file !!" << std::endl;
@@ -35,7 +35,7 @@ extern "C" {
 			count++;
 		}
 		flux_num=count;
-		std::ifstream ifs2("TEMPORAL2");
+		std::ifstream ifs2("TEMP2");
 		if (ifs2.fail()){
 			std::cerr << "error opening the dumped dat file !!" << std::endl;
 			exit(1);

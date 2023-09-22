@@ -32,16 +32,23 @@ OPTIONS:
 outdir=[directory name]: If provided, output directory name can be specified. default: acispback.
 name=[output model name]: If provided, output model name can be specified. As required by XSPEC, this name must consists of lower letters (a-z) and/or underscores (_). It must not include numbers! default: acispback.
 genrmf=[yes|no]: Generate response matrix or not. default: yes.
+rmffile=[file name]: If provided, rmf file will not be newly created. The energy grid of the output spectral model will be the same as the rmf file. If "genrmf=no" and rmffile is not provided, it tries to use "temp.rmf" in the output directory.
 genspec=[yes|no]: Generate energy spectrum or use already existing file. default: yes.
-genwmap=[yes|no]: Generate weight map or use already existing files. default: yes.
-rmffile=[file name]: If "genrmf=no", the rmf file can be provided. If provided, the energy grid of the output spectral model will be the same as the rmf file. If not provided, it tries to load the "temp.rmf" in the "acispback" directory.
+specfile=[file name]: If provided, spectral file will not be newly created. If "genspec=no" and specfile is not provided, it tries to use "temp_spec.pi".
 egrid=[number (keV)]: Energy grid of output spectral model. default: 0.05.
-gainfit=[yes|no]: Fit the generated spectral model to the input data with/without free gain parameters. default: yes.
-clean=[yes|no]: Remove temporal files including .pi and .rmf files. default: no.
+emin=[integer (eV)]: Lower energy bound for calculation of weight maps and spectral fit. default: 9000.
+emax=[integer (eV)]: Upper energy bound for calculation of weight maps and spectral fit. default: 115000.
+gainfit=[yes|no]: Fit generated spectral model to the input data with/without free gain slope & offset. default: yes.
+normfit=[yes|no]: If adjustment of the normalization of output spectral model is performed or not. default: yes.
+plot=[yes|no]: Plot the spectral fit window or not. default: yes.
+fakeevt=[yes|no]: Create fake event files or not. Primarily for the case with very small counts in the region of interest. default: no.
+clean=[yes|no]: Remove temporary files including .pi and .rmf files. default: no.
 clobber=[yes|no]: Overwrite existing files or not. default: no.
 
 
 EXAMPLE:
-$ mkacispback "acisf00000_evt2.fits.gz[sky=region(source.reg)]" outdir=pback-source name=pb_src
+$ mkacispback "acisf00000_evt2.fits.gz[sky=region(source.reg)]" outdir=pback-source name=pb_src_one
+Particle-induced background spectral model named "pb_src_one" for the sky region "source.reg" will be gerenated in the directory "pback-source". Weight map, data spectrum and response matrix will be generated.
 
-Particle-induced background spectral model named "pb_src" for the sky region "source.reg" will be gerenated in the directory "pback-source". Weight map, data spectrum and response matrix will be generated.
+$ mkacispback "acisf00000_evt2.fits.gz[sky=region(source.reg)]" outdir=pback-source name=pb_src_one rmffile=input.rmf specfile=input.pi plot=no
+RMF and spectral files "input.rmf" and "input.pi" are used and new RMF and spectral files will not be created. XSPEC window with the spectrum and model will not appear.

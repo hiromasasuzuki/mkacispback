@@ -18,9 +18,10 @@ LMODCALC=${17}
 LMODCPP=${18}
 LMODOUTCPP=${19}
 LMODDAT=${20}
+SHAPEMOD=${23}
 COMPLOG="compilation.log"
-AVERATE=${23}
-ALPHA=${24}
+#AVERATE=${23}
+#ALPHA=${24}
 
 MAINFUNC="flux_temp = "
 
@@ -133,7 +134,7 @@ WEIGHT[$CNTS]=$line
 SUMWEIGHT=$((SUMWEIGHT+WEIGHT[$CNTS]))
 CNTS=$(( CNTS+1 ))
 done <temp_weightmap_ccd${CCD}_energy${WEMIN}to${WEMAX}.dat
-if [ "${SUMWEIGHT}" -eq 0 ]; then echo "  Skipping CCD${CCD}..."; continue; fi
+if [ "${SUMWEIGHT}" -eq 0 ]; then echo "    Skipping..."; continue; fi
 
 if [ "${FS_EBOUNDFLAG}" -eq 0 ]; then
 CNTS=0
@@ -144,10 +145,10 @@ done <temp_calcdeltaE_ccd${CCD}.dat
 fi
 
 punlearn dmextract
-dmextract infile="${EV2FITS}[ccd_id=${CCD}][energy=9000:11500][bin pi=1:1024:1]" mode=h verbose=0 outfile=temp_spec_whole_ccd${CCD}_energy9000to11500.pi clobber=$CLOB >/dev/null
+dmextract infile="${EV2FITS}[ccd_id=${CCD}][energy=${WEMIN}:${WEMAX}][bin pi=1:1024:1]" mode=h verbose=0 outfile=temp_spec_whole_ccd${CCD}_energy${WEMIN}to${WEMAX}.pi clobber=$CLOB >/dev/null
 if [ $? -gt 0 ]; then exit 1;fi
-TOTCTS=`dmkeypar temp_spec_whole_ccd${CCD}_energy9000to11500.pi TOTCTS echo+`
-EXPOSURE=`dmkeypar temp_spec_whole_ccd${CCD}_energy9000to11500.pi EXPOSURE echo+`
+TOTCTS=`dmkeypar temp_spec_whole_ccd${CCD}_energy${WEMIN}to${WEMAX}.pi TOTCTS echo+`
+EXPOSURE=`dmkeypar temp_spec_whole_ccd${CCD}_energy${WEMIN}to${WEMAX}.pi EXPOSURE echo+`
 RATE=`perl -e "print ${TOTCTS}/${EXPOSURE}"`
 ALPHA=0.0
 AVERATE=1.0
@@ -158,7 +159,10 @@ CCD1FAC=0.90
 if [ "${CCD}" -eq 5 ];then AVERATE=1.25; ALPHA=0.20; fi
 #if [ "${CCD}" -eq 6 ];then AVERATE=0.10; ALPHA=0.10; fi
 if [ "${CCD}" -eq 7 ];then AVERATE=0.76; ALPHA=0.57; fi
-if [ $TOTCTS -lt 50 ];then RATE=$AVERATE
+if [ "$CCD" -eq 5 -o "$CCD" -eq 7 ] && [ $TOTCTS -lt 50 -o $SHAPEMOD -eq 0 ];then
+	RATE=$AVERATE
+	echo "    Will not apply spectral-shape modification."
+fi
 
 ## weighed sum of components in template models
 for MOD_NO in `seq 32`; do
