@@ -21,7 +21,7 @@ Contributors: Taweewat Somboonpanyakul, Adam Mantz, Steven W. Allen (Stanford Un
        export ACISPBACK_PYTHON=</path/to/python**>   # python with astropy library (ex. "export ACISPBACK_PYTHON=/usr/local/bin/python3.7")
        export ACISPBACK_GXX=</path/to/g++**>   # g++ which supports c++11 (ex. "export ACISPBACK_GXX=/usr/local/bin/g++-9")
 
-2. Copy the executable file "mkacispback" to /usr/local/bin (or somewhere in the $PATH).
+2. Copy the executable file "mkacispback" to /usr/local/bin (or somewhere in $PATH).
 3. Initialize HEAsoft and CIAO before running this command. The environment variable $CALDB must point at the CIAO CALDB. With CONDA CIAO, initialize HEAsoft and then activate CIAO, and finally set HEADAS to the HEAsoft directory.
 4. Run mkacispback by, e.g., 
  
@@ -38,8 +38,8 @@ Contributors: Taweewat Somboonpanyakul, Adam Mantz, Steven W. Allen (Stanford Un
 
 ### Notes:
 - By default, mkacispback newly creates an RMF file corresponding to the input source region and this may take some time. To prevent this, provide a prepared RMF file by "rmffile=FILENAME".
-- Output model name must not include numbers, upper case letters, and must not begin with the words already registerd as an XSPEC model (e.g., "name=src" leads to an error because "src" is recognized as the "srcut" model).
-- Depending on the observation date, mkacispback may predict lower background coninua in ~ 2-6 keV especially for the S1 and S3 CCDs. In such cases, you may have to add an additional power-law model. Please refer to the figures below which compare mkacispback output models to ACIS-stowed observations for each CCD. To get date from OBSID, refer to the paper below.
+- Output model name must not include numbers, upper case letters, and must not begin with the words already registered as an XSPEC model (e.g., "name=src" leads to an error because "src" is recognized as the "srcut" model).
+- Depending on the observation date, mkacispback may predict lower background continua in ~ 2-6 keV especially for the S1 and S3 CCDs. In such cases, you may have to add an additional power-law model. Please refer to the figures below which compare mkacispback output models to ACIS-stowed observations for each CCD. To get date from OBSID, refer to the paper below.
 	- VFAINT mode 
 ![I0, vfaint mode](figures/vfaint_ccd0_tiled-crop.pdf)
 ![I2, vfaint mode](figures/vfaint_ccd2_tiled-crop.pdf)
