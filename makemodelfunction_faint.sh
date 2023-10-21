@@ -568,7 +568,7 @@ if [ "$CLOB" = "yes" ] || [ "$CLOB" = "no" -a ! -e "$LMODCPP" ]; then
 	echo "}">>$LMODCPP
 	echo "ofs.close();">>$LMODCPP
 	echo "}">>$LMODCPP
-	${ACISPBACK_GXX} -std=c++11 $LMODCPP -o ${LMODCALC} >$COMPLOG
+	${ACISPBACK_GXX} -std=c++11 $LMODCPP -o ${LMODCALC} >$COMPLOG 2>&1
 	./${LMODCALC}
 else echo "clobber error while making $LMODCPP."; exit 1; fi
 
