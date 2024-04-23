@@ -1,6 +1,6 @@
 mkacispback
 =======================  
-A software to generate spectral models for Chandra ACIS particle-induced background.  
+A software to generate spectral models for Chandra ACIS (I and S1-S3) particle-induced background.  
 Version: 2023-09-23 
 Author: Hiromasa Suzuki (The University of Tokyo)  
    hiromasa050701 (at) gmail.com  
@@ -26,6 +26,40 @@ Contributors: Taweewat Somboonpanyakul, Adam Mantz, Steven W. Allen (Stanford Un
 4. Run mkacispback by, e.g., 
  
        $ mkacispback "acisf00000_evt2.fits.gz[sky=region(source.reg)]" outdir=pback-source name=pb_src
+       OBSID: 00000
+       Data mode= faint
+
+       Processing CCD0.
+       Creating weight map...
+         Created.
+         
+	   (skipped)
+	   
+	   Extracting spectrum...
+	   Extracted.
+	   Creating rmf...
+	   WARNING: Did not find 'GRATTYPE' in supplied header, skipping it
+	   WARNING: Did not find 'CCD_ID' in supplied header, skipping it
+	   WARNING: Did not find 'GRATTYPE' in supplied header, skipping it
+	   Created.
+	   Generating spectral model...
+	     Processing CCD0.
+		 Processing CCD1.
+           Skipping...
+           
+	   (skipped)
+	   
+	   normalization factor = 0.347810
+       gain slope=  1.00290 +/- 6.46455E-03
+	   gain offset=  7.50589E-02 +/- 0.175410
+       C-Statistic/d.o.f.= 185.85/169
+
+       Done.
+
+       Total counts in the input region (9000-11500 eV): 980
+       Effective exposure (s): 88981.47389096  (from spectral file)
+	   Area (arcmin^2): 1.2544916861928  (from spectral file)
+	   
 
    Particle-induced background spectral model named "pb_src" for the sky region "source.reg" will be gerenated in the directory "pback-source".
 
@@ -59,12 +93,13 @@ Contributors: Taweewat Somboonpanyakul, Adam Mantz, Steven W. Allen (Stanford Un
 
 
 ### Test platforms:
-- MacOS 10.14, 10.15, 11.4, 12.2 (Intel-based), 12.0 (Apple M1)
+- MacOS 10.14, 10.15, 11.4, 12.2 (Intel-based), 12.0, 13.5 (Apple M1)
 - CentOS 7
 
 
 ### Known issues:
-
+- May not work with HEASoft 6.29 due to the "initpackage" error
 
 ### Reference:
 - [Suzuki et al. 2021, A&A, 665, A116](https://doi.org/10.1051/0004-6361/202141458)
+
