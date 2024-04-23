@@ -59,7 +59,7 @@ Contributors: Taweewat Somboonpanyakul, Adam Mantz, Steven W. Allen (Stanford Un
        Total counts in the input region (9000-11500 eV): 980
        Effective exposure (s): 88981.47389096  (from spectral file)
 	   Area (arcmin^2): 1.2544916861928  (from spectral file)
-	   
+	   All done.
 
    Particle-induced background spectral model named "pb_src" for the sky region "source.reg" will be gerenated in the directory "pback-source".
 
