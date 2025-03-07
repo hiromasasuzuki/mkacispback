@@ -68,9 +68,11 @@ Contributors: Taweewat Somboonpanyakul, Adam Mantz, Steven W. Allen (Stanford Un
        XSPEC> lmod pb_src_pkg ./pback-source   # if you are at the parent directory of "pback-source" directory
        
        XSPEC> data 1:1 <source.pi>
-       XSPEC> response 1:1 <data.rmf>   # for sky emission model
-       XSPEC> arf 1:1 <data.arf>   # for sky emission model
-       XSPEC> response 2:1 <pback.rmf>   # for acispback (particle-background) model
+       XSPEC> response 1:1 <data.rmf>   # for source emission model
+       XSPEC> arf 1:1 <data.arf>   # for source emission model
+       XSPEC> response 2:1 <pback.rmf>   # for particle-background (pb_src) model
+       XSPEC> model 1:source ...   # define source emission model
+       XSPEC> model 2:pb pb_src   # define particle-background model
 
 6. See more instruction with "mkacispback --h"
 
