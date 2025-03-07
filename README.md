@@ -1,6 +1,6 @@
 mkacispback
 =======================  
-A software to generate spectral models for Chandra ACIS (I and S1-S3) particle-induced background.  
+A software to generate spectral models for Chandra ACIS (I0-I3 & S1-S3) particle-induced background.  
 Version: 2023-09-23 
 Author: Hiromasa Suzuki (The University of Tokyo)  
    hiromasa050701 (at) gmail.com  
@@ -11,7 +11,7 @@ Contributors: Taweewat Somboonpanyakul, Adam Mantz, Steven W. Allen (Stanford Un
 - c++11 compiler (ver. 4.2.1, 4.8.5 tested)
 - python (ver. 3.0 or later required; 3.5.4, 3.6.8, 3.8.5, 3.10.8 tested) with "astropy" library
 - CIAO (ver. 4.10, 4.11, 4.12, 4.14, 4.15 tested)
-- HEAsoft (ver. 6.20, 6.26, 6.27, 6.29, 6.30 tested)
+- HEAsoft (ver. 6.20, 6.26, 6.27, 6.30 tested)
 
 
 ### How to use the software:
@@ -59,7 +59,7 @@ Contributors: Taweewat Somboonpanyakul, Adam Mantz, Steven W. Allen (Stanford Un
        Total counts in the input region (9000-11500 eV): 980
        Effective exposure (s): 88981.47389096  (from spectral file)
 	   Area (arcmin^2): 1.2544916861928  (from spectral file)
-	   
+	   All done.
 
    Particle-induced background spectral model named "pb_src" for the sky region "source.reg" will be gerenated in the directory "pback-source".
 
@@ -100,7 +100,6 @@ Contributors: Taweewat Somboonpanyakul, Adam Mantz, Steven W. Allen (Stanford Un
 ### Test platforms:
 - MacOS 10.14, 10.15, 11.4, 12.2 (Intel-based), 12.0, 13.5 (Apple M1)
 - CentOS 7
-
 
 ### Known issues:
 - May not work with HEASoft 6.29 due to the "initpackage" error
